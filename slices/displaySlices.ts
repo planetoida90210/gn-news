@@ -25,3 +25,4 @@ export const {changeView} = displaySlice.actions
 export const selectDisplay = (state: RootState) => state.display.displayGrid
 
 export default displaySlice.reducer
+

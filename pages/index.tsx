@@ -63,7 +63,9 @@ export default function Home({ newsArticle }: NewsPageProps) {
         <main className="h-full w-full pb-10">
           <div className="mb-6">menu</div>
           <div
-            className={`${state ? "gridItem" : "listItem"} scrollbar-hide w-full h-full overflow-x-scroll`}
+            className={`${state ? "gridItem" : "listItem"} scrollbar-hide w-full h-full ${
+              isOpenModal ? "overflow-x-none" : "overflow-x-scroll"
+            }`}
           >
             {newsArticle.map((item, i) => {
               return (
