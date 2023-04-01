@@ -41,7 +41,7 @@ export default function NewsItem({ state, item }: NewsItemProps) {
           </div>
         </div>
         {state && (
-          <div className="mx-auto justify-center w-[250px] md:w-[200px] h-[200px] md:h-[180px] relative items-center">
+          <div className="mx-auto justify-center w-[200px] md:w-[200px] h-[200px] md:h-[200px] relative items-center">
             <Image
               src={validImageUrl || images.placeholderImage}
               alt="news photo"

@@ -78,7 +78,7 @@ export default function Home({ newsArticle }: NewsPageProps) {
                 </li>
               );
             })}
-            {isOpenModal && <Modal modalContent={modalContent} />}
+            {isOpenModal && <Modal modalContent={modalContent} setIsOpenModal={setIsOpenModal} />}
           </div>
         </main>
       </div>

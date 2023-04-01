@@ -1,6 +1,6 @@
 import { NewsArticle } from "@/models/NewsArticle";
 import Image from "next/image";
-import React from "react";
+import React, { Dispatch, SetStateAction, useRef } from "react";
 
 import images from "../assets";
 import { Button } from ".";
@@ -8,17 +8,32 @@ import Link from "next/link";
 
 interface ModalProps {
   modalContent: NewsArticle | any;
+  setIsOpenModal: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function Modal({ modalContent }: ModalProps) {
+export default function Modal({ modalContent, setIsOpenModal }: ModalProps) {
+  const modalRef = useRef<HTMLInputElement>(null);
+
   const validImageUrl =
     modalContent?.urlToImage?.startsWith("http://") || modalContent?.urlToImage?.startsWith("https://")
       ? modalContent?.urlToImage
       : undefined;
-  console.log(modalContent);
+
+  const handleClickOutside = (e: any) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      setIsOpenModal(false);
+    }
+  };
+
   return (
-    <div className="sticky w-full h-full flex justify-center items-center inset-0 backdrop-blur-md z-10 bg-black/5">
-      <div className="w-fit h-fit flex bg-white dark:bg-dark1 justify-center p-3 md:p-6 rounded-md">
+    <div
+      className="sticky w-full h-full flex justify-center items-center inset-0 backdrop-blur-md z-10 bg-black/5"
+      onClick={handleClickOutside}
+    >
+      <div
+        ref={modalRef}
+        className="w-fit h-fit flex bg-white dark:bg-dark1 justify-center p-3 md:p-6 rounded-md"
+      >
         <div className="flex flex-col pt-2 items-center">
           <h1 className="text-sm md:text-lg font-bold w-[80%] text-center">{modalContent?.title}</h1>
           <div className="flex items-center justify-between w-[80%] py-4 md:py-10">
@@ -30,7 +45,7 @@ export default function Modal({ modalContent }: ModalProps) {
           <div className="hidden lg:block">
             <div className="flex max-w-4xl items-between justify-center space-x-6">
               <div>
-                <div className="relative lg:w-[450px] h-[350px]">
+                <div className="relative lg:w-[350px] h-[350px]">
                   <Image
                     src={validImageUrl || images.placeholderImage}
                     alt="News Article"
