@@ -54,25 +54,36 @@ export default function Modal({ modalContent, setIsOpenModal }: ModalProps) {
                   />
                 </div>
               </div>
-              <div className="flex flex-col justify-around">
-                <p>{modalContent?.content?.slice(0, modalContent?.content.indexOf("["))}</p>
-                <Link href={modalContent?.url} className="w-[150px]" target={"_blank"}>
-                  <Button title="pełny artykuł" />
-                </Link>
+              <div className="flex flex-col justify-evenly items-center">
+                <p className="max-w-[80%] text-center">
+                  {modalContent?.content
+                    ? modalContent?.content?.slice(0, modalContent?.content.indexOf("["))
+                    : "Brak treści artykułu - wejdź w link ponizej aby zapoznać się z pełną treścią."}
+                </p>
+                <div className="flex items-center space-x-6">
+                  <Link href={modalContent?.url} className="w-[150px]" target={"_blank"}>
+                    <Button title="pełny artykuł" />
+                  </Link>
+                  <div onClick={() => setIsOpenModal(false)}>
+                    <Button title="wróć do szukania"></Button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div className="lg:hidden flex flex-col justify-center items-center">
-            <div className="w-[300px] h-[200px] md:w-[450px] md:h-[350px] relative">
+          <div className="lg:hidden flex flex-col justify-center items-center p-2">
+            <div className="w-[200px] h-[200px] lg:w-[450px] lg:h-[350px] relative">
               <Image
                 src={validImageUrl || images.placeholderImage}
                 alt="News Article"
                 fill
-                className="object-cover rounded-xl"
+                className="object-cover rounded-md"
               />
             </div>
-            <p className="max-w-[80%]">
-              {modalContent?.content?.slice(0, modalContent?.content.indexOf("["))}
+            <p className="max-w-[80%] mt-6">
+              {modalContent?.content
+                ? modalContent?.content?.slice(0, modalContent?.content.indexOf("["))
+                : "Brak treści artykułu - wejdź w link ponizej aby zapoznać się z pełną treścią."}
             </p>
           </div>
         </div>

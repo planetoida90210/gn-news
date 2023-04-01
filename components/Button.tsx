@@ -3,6 +3,7 @@ import React from "react";
 interface ButtonProps {
   title: string;
   link?: string;
+  onClick?: () => void;
 }
 
 function Button({ title, link }: ButtonProps) {
