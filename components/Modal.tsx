@@ -80,11 +80,19 @@ export default function Modal({ modalContent, setIsOpenModal }: ModalProps) {
                 className="object-cover rounded-md"
               />
             </div>
-            <p className="max-w-[80%] mt-6">
+            <p className="max-w-[80%] my-6">
               {modalContent?.content
                 ? modalContent?.content?.slice(0, modalContent?.content.indexOf("["))
                 : "Brak treści artykułu - wejdź w link ponizej aby zapoznać się z pełną treścią."}
             </p>
+            <div className="flex items-center space-x-6 pb-3">
+              <Link href={modalContent?.url} className="w-[150px]" target={"_blank"}>
+                <Button title="pełny artykuł" />
+              </Link>
+              <div onClick={() => setIsOpenModal(false)}>
+                <Button title="wróć do szukania"></Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

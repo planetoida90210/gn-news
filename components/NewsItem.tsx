@@ -25,11 +25,11 @@ export default function NewsItem({ state, item }: NewsItemProps) {
             : "h-[120px] md:h-[100px] lg:mx-12 md:mx-8 sm:mx-6"
         } mx-2 my-4 bg-light1 dark:bg-dark1 rounded-md cursor-pointer shadow-md dark:shadow-black/20 hover:scale-105 duration-100`}
       >
-        <div className={`${state ? "gridNews" : "listNews space-x-4"} h-1/2 mx-4`}>
+        <div className={`${state ? "gridNews space-y-4 md:space-y-2" : "listNews space-x-4"} h-1/2 mx-4`}>
           <h1
             className={`${
               state ? "md:mb-3 md:text-lg" : "text-sm md:text-xl"
-            }  text-dark1 dark:text-white h-1/2 line-clamp-2 w-3/4`}
+            }  text-dark1 dark:text-white line-clamp-3 w-3/4`}
           >
             {title}
           </h1>
